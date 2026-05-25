@@ -27,6 +27,7 @@ header{background:var(--surface);border-bottom:1px solid var(--border);position:
 .btn-outline:hover{background:var(--accent-light)}
 .btn-fill{background:var(--accent);color:#fff}
 .btn-fill:hover{background:var(--accent2)}
+.btn-text{color:var(--accent);background:none;padding:0}
 .icon-btn{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--text2);transition:.15s;cursor:pointer;border:1.5px solid var(--border);background:var(--surface)}
 .icon-btn:hover{background:var(--accent-light);border-color:var(--accent);color:var(--accent)}
 .icon-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
@@ -155,7 +156,7 @@ header{background:var(--surface);border-bottom:1px solid var(--border);position:
 /* ── AUTH MODAL ── */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:center;justify-content:center}
 .modal-overlay.open{display:flex}
-.modal{background:var(--surface);border-radius:20px;padding:36px;width:400px;max-width:90vw;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal{background:var(--surface);border-radius:20px;padding:36px;width:400px;max-width:90vw;box-shadow:0 20px 60px rgba(0,0,0,.2);position:relative}
 .modal h2{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:6px}
 .modal p{color:var(--text2);font-size:14px;margin-bottom:24px}
 .form-group{margin-bottom:16px}
@@ -168,7 +169,6 @@ header{background:var(--surface);border-bottom:1px solid var(--border);position:
 .modal-switch span{color:var(--accent);font-weight:600;cursor:pointer}
 .modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:var(--surface2);border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2)}
 .modal-close:hover{background:var(--accent-light);color:var(--accent)}
-.modal{position:relative}
 
 /* ── TOAST ── */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:#fff;padding:12px 24px;border-radius:30px;font-size:14px;font-weight:600;z-index:300;transition:.3s;opacity:0;white-space:nowrap}

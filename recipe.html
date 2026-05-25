@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Кулинарный помощник</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кулинарный помощник</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -84,7 +84,7 @@
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- ════════════════════════════════════════════ PAGE: HOME ════════════════════════════════════════════ -->
+<!-- ═══════════ PAGE: HOME ═══════════ -->
 <div class="page active" id="page-home">
   <div class="hero">
     <div class="hero-text">
@@ -95,63 +95,55 @@
     <div class="hero-emoji">🥗🍳</div>
   </div>
 
-  <div class="section">
-    <h2>По категориям</h2>
-    <div class="categories" id="categories-grid"></div>
-  </div>
+  <div class="category-row" id="home-cats"></div>
 
-  <div class="section">
-    <h2>Избранные рецепты</h2>
-    <div class="recipes-grid" id="featured-grid"></div>
-  </div>
+  <div class="section-title">Рекомендации дня <span>✨</span></div>
+  <div class="cards-grid" id="home-featured"></div>
 
-  <div class="section">
-    <h2>Быстрые рецепты (≤30 минут)</h2>
-    <div class="recipes-grid" id="quick-grid"></div>
-  </div>
+  <div class="section-title">⚡ Быстрые блюда <span style="font-size:16px;color:var(--text2);font-weight:400">(до 30 мин)</span></div>
+  <div class="cards-grid" id="home-quick"></div>
 
-  <div class="section">
-    <h2>Рецепты со всего мира</h2>
-    <div class="recipes-grid" id="world-grid"></div>
-  </div>
+  <div class="section-title">🌍 По кухням мира</div>
+  <div class="cards-grid" id="home-world"></div>
 </div>
 
-<!-- ════════════════════════════════════════════ PAGE: SEARCH ════════════════════════════════════════════ -->
+<!-- ═══════════ PAGE: SEARCH ═══════════ -->
 <div class="page" id="page-search">
-  <div class="search-container">
-    <div class="filter-panel" id="filter-panel">
+  <h1 style="font-family:'Playfair Display',serif;font-size:30px;margin-bottom:20px">🔍 Поиск рецептов</h1>
+  <div class="search-layout">
+    <div class="filter-panel">
       <h3>Фильтры</h3>
       
-      <div class="filter-section">
+      <div class="filter-group">
         <label class="filter-title">Категория</label>
-        <div class="filter-tags" id="category-filter"></div>
+        <div class="filter-tags" id="filter-cat"></div>
       </div>
 
-      <div class="filter-section">
+      <div class="filter-group">
         <label class="filter-title">Кухня</label>
-        <div class="filter-tags" id="cuisine-filter"></div>
+        <div class="filter-tags" id="filter-cuisine"></div>
       </div>
 
-      <div class="filter-section">
+      <div class="filter-group">
         <label class="filter-title">Тип диеты</label>
-        <div class="filter-tags" id="diet-filter"></div>
+        <div class="filter-tags" id="filter-diet"></div>
       </div>
 
-      <div class="filter-section">
-        <label class="filter-title">Время приготовления (минут)</label>
-        <input type="range" id="time-filter" min="0" max="180" value="180" oninput="applyFilters()">
-        <div class="range-value"><span id="time-value">180</span> мин</div>
+      <div class="filter-group">
+        <label class="filter-title">Время приготовления</label>
+        <input type="range" id="filter-time" min="0" max="180" value="180" oninput="applyFilters()">
+        <div style="margin-top:8px;color:var(--text2);font-size:12px"><span id="time-val">180</span> мин</div>
       </div>
 
-      <div class="filter-section">
-        <label class="filter-title">Калории (ккал)</label>
-        <input type="range" id="cal-filter" min="0" max="1000" value="1000" oninput="applyFilters()">
-        <div class="range-value"><span id="cal-value">1000</span> ккал</div>
+      <div class="filter-group">
+        <label class="filter-title">Калории</label>
+        <input type="range" id="filter-kcal" min="0" max="1000" value="1000" oninput="applyFilters()">
+        <div style="margin-top:8px;color:var(--text2);font-size:12px"><span id="kcal-val">1000</span> ккал</div>
       </div>
 
-      <div class="filter-section">
+      <div class="filter-group">
         <label class="filter-title">Сортировка</label>
-        <select id="sort-filter" onchange="applyFilters()">
+        <select id="sort-select" onchange="applyFilters()">
           <option value="rating">По рейтингу</option>
           <option value="time">По времени (возр.)</option>
           <option value="kcal">По калориям (возр.)</option>
@@ -159,83 +151,101 @@
         </select>
       </div>
 
-      <button class="btn btn-outline" onclick="resetFilters()" style="width:100%">Сбросить фильтры</button>
+      <button class="btn btn-outline" style="width:100%" onclick="resetFilters()">Сбросить</button>
     </div>
 
-    <div class="search-results">
-      <div class="search-header">
-        <input type="text" id="search-input" placeholder="Введите название или ингредиент..." oninput="applyFilters()" class="search-field">
+    <div>
+      <div class="results-header">
+        <input type="text" id="search-input" placeholder="Введите название или ингредиент..." oninput="applyFilters()" class="search-field" style="flex:1;margin-right:12px">
+        <div class="results-count" id="results-count">Найдено: 0</div>
       </div>
-      <div class="recipes-grid" id="results-grid"></div>
+      <div class="cards-grid" id="search-results"></div>
     </div>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════════ PAGE: RECIPE DETAIL ════════════════════════════════════════════ -->
+<!-- ═══════════ PAGE: RECIPE ═══════════ -->
 <div class="page" id="page-recipe">
-  <div class="recipe-detail">
-    <button class="btn btn-text" onclick="showPage('home')">← Вернуться</button>
-    
-    <div class="recipe-header">
-      <div class="recipe-title-block">
-        <span class="recipe-emoji" id="recipe-emoji"></span>
-        <div>
-          <h1 id="recipe-title"></h1>
-          <p class="recipe-meta" id="recipe-meta"></p>
-        </div>
+  <div class="breadcrumb">
+    <span onclick="showPage('home')" style="cursor:pointer">🏠 Дом</span>
+    <span class="sep">›</span>
+    <span id="recipe-bc">Рецепт</span>
+  </div>
+  <div class="recipe-layout">
+    <div>
+      <div class="recipe-hero" id="recipe-emoji-hero"></div>
+      
+      <h1 class="recipe-title" id="recipe-title-main"></h1>
+      
+      <div class="rating-row">
+        <span class="stars" id="recipe-stars-main">★★★★☆</span>
+        <span id="recipe-reviews" style="font-size:13px;color:var(--text2)">(0 отзывов)</span>
+        <span class="meta-chip" style="margin-left:auto;background:var(--accent-light);color:var(--accent2);border:none;gap:6px"><span id="recipe-tag-cat"></span></span>
       </div>
-      <button class="card-fav" id="recipe-fav-btn" onclick="toggleFavorite(state.currentRecipeId)">♦️</button>
-    </div>
 
-    <p id="recipe-desc"></p>
+      <div class="recipe-meta-row" id="recipe-meta-row"></div>
 
-    <div class="recipe-tabs">
-      <button class="tab on" onclick="switchRecipeTab('ingredients',this)">🥕 Ингредиенты</button>
-      <button class="tab" onclick="switchRecipeTab('steps',this)">👨‍🍳 Приготовление</button>
-      <button class="tab" onclick="switchRecipeTab('nutrition',this)">📊 Пищевая ценность</button>
-    </div>
+      <p id="recipe-desc" style="font-size:15px;line-height:1.6;color:var(--text2);margin-bottom:24px"></p>
 
-    <div class="recipe-tabs-content">
-      <div id="ingredients-tab">
-        <div class="portion-control">
+      <div class="tabs">
+        <div class="tab on" onclick="switchTab('ingredients',this)">🥕 Ингредиенты</div>
+        <div class="tab" onclick="switchTab('steps',this)">👨‍🍳 Приготовление</div>
+        <div class="tab" onclick="switchTab('kbju',this)">📊 Калории</div>
+      </div>
+
+      <div id="tab-ingredients">
+        <div class="portions-ctrl">
           <label>Порции:</label>
           <button class="portion-btn" onclick="changePortion(-1)">−</button>
-          <span id="portion-count">1</span>
+          <span class="portions-num" id="portions-num">1</span>
           <button class="portion-btn" onclick="changePortion(+1)">+</button>
         </div>
-        <div id="ingredients-list"></div>
-        <button class="btn btn-fill" onclick="addToCart()">Добавить в список покупок</button>
+        <div id="sidebar-ingredients"></div>
+        <button class="btn btn-fill" style="width:100%;margin-top:16px" onclick="addToCart()">Добавить всё в список покупок</button>
       </div>
 
-      <div id="steps-tab" style="display:none">
-        <ol id="steps-list"></ol>
+      <div id="tab-steps" style="display:none"></div>
+
+      <div id="tab-kbju" style="display:none"></div>
+    </div>
+
+    <div class="recipe-sidebar">
+      <div class="sidebar-card">
+        <h3>Пищевая ценность</h3>
+        <div class="kbju-grid" id="sidebar-kbju"></div>
       </div>
 
-      <div id="nutrition-tab" style="display:none">
-        <div id="nutrition-values"></div>
+      <button class="big-btn fav" id="fav-recipe-btn" onclick="toggleFav()">♡ В избранное</button>
+      <button class="big-btn cart" onclick="addToCart()">🛒 В список покупок</button>
+
+      <div class="sidebar-card">
+        <h3>Похожие рецепты</h3>
+        <div id="sidebar-similar"></div>
       </div>
     </div>
   </div>
-
-  <div class="recipe-sidebar">
-    <h3>Другие рецепты</h3>
-    <div id="similar-recipes"></div>
-  </div>
 </div>
 
-<!-- ════════════════════════════════════════════ PAGE: FAVOURITES ════════════════════════════════════════════ -->
+<!-- ═══════════ PAGE: FAVOURITES ═══════════ -->
 <div class="page" id="page-favourites">
-  <h1>Избранные рецепты</h1>
-  <div class="recipes-grid" id="favourites-grid"></div>
+  <div class="flex aic jcsb" style="margin-bottom:24px">
+    <h1 style="font-family:'Playfair Display',serif;font-size:32px">❤️ Избранное</h1>
+    <span class="results-count" id="fav-count-label"></span>
+  </div>
+  <div id="fav-content"></div>
 </div>
 
-<!-- ════════════════════════════════════════════ PAGE: SHOPPING ════════════════════════════════════════════ -->
+<!-- ═══════════ PAGE: SHOPPING ═══════════ -->
 <div class="page" id="page-shopping">
-  <h1>Список покупок</h1>
-  <div id="shopping-list"></div>
+  <div class="shop-header">
+    <h1 style="font-family:'Playfair Display',serif;font-size:32px">🛒 Список покупок</h1>
+    <button class="btn btn-outline" onclick="clearCart()" style="display:none" id="clear-cart-btn">Очистить</button>
+  </div>
+  <div class="shop-stats" id="shop-stats"></div>
+  <div id="shop-content"></div>
 </div>
 
-<!-- ════════════════════════════════════════════ PAGE: PROFILE ════════════════════════════════════════════ -->
+<!-- ═══════════ PAGE: PROFILE ═══════════ -->
 <div class="page" id="page-profile">
   <div class="profile-header">
     <div class="avatar" id="profile-avatar">Р</div>
